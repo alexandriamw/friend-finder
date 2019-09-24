@@ -141,10 +141,20 @@
     <footer class="footer">
         <div class="container">
             <p>
-                <a href="api/friends">API Friends</a>
+                <a href="/api/friends.js">API Friends</a>
             </p>
         </div>
     </footer>
+<!--Modal popup with best match not working yet-->
+    <div class="modal">
+        <div class="modal-content">
+            <h3>Your Match!</h3>
+            <br><br>
+            <h5 id="yourMatch"></h5>
+            <img id="yourMatchImage" src="">
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
@@ -155,7 +165,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <script>
-        document.getElementById("survey-form").addEventListener("submit", function(event) {
+        document.getElementById("survey-form").addEventListener("submit", function (event) {
             event.preventDefault();
             const formData = {
                 name: event.target.name.value,
@@ -171,17 +181,15 @@
                 q9: event.target.q9.value,
                 q10: event.target.q10.value
             };
-        
+
             fetch("/api/friends", {
                 method: 'POST',
                 body: JSON.stringify(formData),
                 headers: {
                     "Content-Type": "application/json; charset=utf-8",
                 },
-            }).then(function(response) {
+            }).then(function (response) {
                 response.json().then(function (data) {
-                    // These are the object members you can use to display
-                    // the right result in the application:
                     console.log(data.name);
                     console.log(data.photo);
                     console.log(data.score);
